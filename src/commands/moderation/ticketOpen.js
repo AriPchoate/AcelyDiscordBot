@@ -20,9 +20,13 @@ module.exports = {
     }
   ],
   devOnly: true, // need to change to false when implemented
-  deleted: true,
+  // deleted: true,
 
   callback: async (client, interaction) => {
+
+    await interaction.deferReply({ flags: MessageFlags.Ephemeral });
+
+
     const issue = interaction.options.getString("request");
     const guild = interaction.guild;
     const member = interaction.member;
@@ -71,7 +75,7 @@ module.exports = {
 **User:** ${member.user}
 **Issue:** ${issue}
 
-A staff member will be with you soon.`
+An admin member will be with you soon.`
     });
 
     return interaction.editReply({
