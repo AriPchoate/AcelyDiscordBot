@@ -79,22 +79,22 @@ module.exports = {
 
     const botMember = member.guild.members.me;
 
-    console.log("Bot permissions in guild:", botMember.permissions.toArray());
+    // console.log("Bot permissions in guild:", botMember.permissions.toArray());
 
     const channelPerms = interaction.channel.permissionsFor(botMember);
-    console.log("Bot permissions in channel:", channelPerms.toArray());
+    // console.log("Bot permissions in channel:", channelPerms.toArray()); 
 
-    console.log(member);
+    // console.log(member); 
 
 
 
     const role = member.guild.roles.cache.get('1411541634423718020');
-    console.log({
-      roleName: role.name,
-      rolePosition: role.position,
-      managed: role.managed,
-      permissions: role.permissions.toArray(),
-    });
+    // console.log({ 
+    //   roleName: role.name,
+    //   rolePosition: role.position,
+    //   managed: role.managed,
+    //   permissions: role.permissions.toArray(),
+    // });
 
 
     await assignRoles(member, level.level);

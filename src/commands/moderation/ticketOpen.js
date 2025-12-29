@@ -19,7 +19,7 @@ module.exports = {
       required: true,
     }
   ],
-  devOnly: true, // need to change to false when implemented
+  // devOnly: true, // need to change to false when implemented
   // deleted: true,
 
   callback: async (client, interaction) => {
@@ -38,7 +38,7 @@ module.exports = {
     const staffRoles = guild.roles.cache.filter(role => role.position >= minRole.position);
 
     const ticketCategory = guild.channels.cache.find(
-        c => c.name.toLowerCase() === "not viewable currently" && c.type === 4
+        c => c.name.toLowerCase() === "new tickets" && c.type === 4
     );
 
 

@@ -83,13 +83,13 @@ if (member.roles.highest.position >= botMember.roles.highest.position) {
 
 
 
-    // // Remove old level roles if needed
-    // const rolesToRemove = member.roles.cache.filter(r => 
-    //   Object.values(levelRoles).includes(r.id)
-    // );
-    // if (rolesToRemove.size > 0) {
-    //   await member.roles.remove(rolesToRemove);
-    // }
+    // Remove old level roles if needed
+    const rolesToRemove = member.roles.cache.filter(r => 
+      Object.values(levelRoles).includes(r.id)
+    );
+    if (rolesToRemove.size > 0) {
+      await member.roles.remove(rolesToRemove);
+    }
 
     // Add new role
     await member.roles.add(role);

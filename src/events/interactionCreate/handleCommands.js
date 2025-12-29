@@ -5,7 +5,9 @@ const {
 } = require('discord.js');
 
 module.exports = async (client, interaction) => {
-  if (!interaction.isChatInputCommand()) return;
+  // if (!interaction.isChatInputCommand()) return;
+
+  if (interaction.isChatInputCommand()) {
 
   const localCommands = getLocalCommands();
 
@@ -22,15 +24,43 @@ module.exports = async (client, interaction) => {
     //     });
     // return;
 
+    // if (commandObject.devOnly) {
+    //   if (!devs.includes(interaction.member.id)) {
+    //     interaction.reply({
+    //       content: 'Only developers are allowed to run this command.',
+    //       flags: MessageFlags.Ephemeral,
+    //     });
+    //     return;
+    //   }
+    // }
+
     if (commandObject.devOnly) {
-      if (!devs.includes(interaction.member.id)) {
-        interaction.reply({
-          content: 'Only developers are allowed to run this command.',
-          flags: MessageFlags.Ephemeral,
-        });
-        return;
-      }
+        // if(interaction.member.id == '1382821127801278514') return;
+      
+        const minRole = interaction.guild.roles.cache.get('1412625442665664598');
+
+        if (!minRole) {
+            console.error('Minimum role not found');
+            return;
+        }
+
+        const member = interaction.member;
+
+        const hasPermission = member.roles.cache.some(
+            role => role.position >= minRole.position
+        );
+
+        if (!hasPermission) {
+            await interaction.reply({
+                content: 'You do not have permission to run this command.',
+                flags: MessageFlags.Ephemeral,
+            });
+            return;
+        }
     }
+
+
+
 
     if (commandObject.testOnly) {
       if (!(interaction.guild.id === testServer)) {
@@ -69,7 +99,38 @@ module.exports = async (client, interaction) => {
     }
 
     await commandObject.callback(client, interaction);
+
   } catch (error) {
     console.log(`There was an error running this command: ${error}`);
   }
+
+  }
+
+
+    if (interaction.isButton()) {
+      if (interaction.customId.startsWith('assignRole_')) {
+        const roleId = interaction.customId.split('_')[1];
+        const role = interaction.guild.roles.cache.get(roleId);
+
+        if (!role) {
+          return interaction.reply({ content: 'Role not found.', flags: MessageFlags.Ephemeral });
+        }
+
+        try {
+          await interaction.member.roles.add(role);
+          return interaction.reply({ content: `You have been given the **${role.name}** role!`, flags: MessageFlags.Ephemeral });
+        } catch (err) {
+          console.error(err);
+          return interaction.reply({ content: 'Failed to assign the role.', flags: MessageFlags.Ephemeral });
+        }
+      }
+    }
+
+
+
+
+
+
+
+
 };

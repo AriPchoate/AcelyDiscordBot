@@ -25,27 +25,28 @@ module.exports = {
 
       
         // Add each user to the embed
-        try {
             for (const level of levels) {
+        try {
             const member = await interaction.guild.members.fetch(level.userId);
             const displayName = member.displayName;
 
             embed.addFields({
-            name: `#${levels.indexOf(level) + 1} - ${displayName}`,
-            value: `**Level:** ${level.level} | **XP:** ${level.xp}`,
-            inline: false,
+                name: `#${levels.indexOf(level) + 1} - ${displayName}`,
+                value: `**Level:** ${level.level} | **XP:** ${level.xp}`,
+                inline: false,
             });
-        }
+
         } catch (error) {
             console.warn(`Could not fetch member ${level.userId} for leaderboard.`, error);
-            // Optionally, you can add a placeholder for missing users
+
             embed.addFields({
                 name: `#${levels.indexOf(level) + 1} - [Left Server]`,
-                value: `**XP:** ${level.xp} | **Level:** ${level.level}`,
+                value: `**Level:** ${level.level} | **XP:** ${level.xp}`,
                 inline: false,
-          });
+            });
         }
-        
+    }
+
 
       await interaction.editReply({ embeds: [embed] });
     } catch (error) {

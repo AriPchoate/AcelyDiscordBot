@@ -8,6 +8,8 @@ module.exports = (directory, foldersOnly = false) => {
     const files = fs.readdirSync(directory, { withFileTypes: true});
 
     for (const file of files) {
+        if (file.name === '.DS_Store') continue; // ********* line added *******
+
         const filePath = path.join(directory, file.name);
 
         if (foldersOnly) {
