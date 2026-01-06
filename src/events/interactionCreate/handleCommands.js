@@ -107,24 +107,44 @@ module.exports = async (client, interaction) => {
   }
 
 
-    if (interaction.isButton()) {
-      if (interaction.customId.startsWith('assignRole_')) {
-        const roleId = interaction.customId.split('_')[1];
-        const role = interaction.guild.roles.cache.get(roleId);
+if (interaction.isButton()) {
+  if (interaction.customId.startsWith('assignRole_')) {
+    const roleId = interaction.customId.split('_')[1];
+    const role = interaction.guild.roles.cache.get(roleId);
 
-        if (!role) {
-          return interaction.reply({ content: 'Role not found.', flags: MessageFlags.Ephemeral });
-        }
-
-        try {
-          await interaction.member.roles.add(role);
-          return interaction.reply({ content: `You have been given the **${role.name}** role!`, flags: MessageFlags.Ephemeral });
-        } catch (err) {
-          console.error(err);
-          return interaction.reply({ content: 'Failed to assign the role.', flags: MessageFlags.Ephemeral });
-        }
-      }
+    if (!role) {
+      return interaction.reply({
+        content: 'Role not found.',
+        flags: MessageFlags.Ephemeral,
+      });
     }
+
+    const member = interaction.member;
+
+    try {
+      // 🔁 TOGGLE LOGIC
+      if (member.roles.cache.has(role.id)) {
+        await member.roles.remove(role);
+        return interaction.reply({
+          content: `Removed the **${role.name}** role.`,
+          flags: MessageFlags.Ephemeral,
+        });
+      } else {
+        await member.roles.add(role);
+        return interaction.reply({
+          content: `Added the **${role.name}** role.`,
+          flags: MessageFlags.Ephemeral,
+        });
+      }
+    } catch (err) {
+      console.error(err);
+      return interaction.reply({
+        content: 'Failed to update your role.',
+        flags: MessageFlags.Ephemeral,
+      });
+    }
+  }
+}
 
 
 
