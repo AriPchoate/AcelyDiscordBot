@@ -8,7 +8,7 @@ const {
 
 const roleGroups = [
   {
-    title: 'SAT Test Date (2025)',
+    title: 'SAT Test Date (2026)',
     description: 'When are you taking the SAT?',
     roles: [
       '2026 March SAT',
@@ -19,6 +19,20 @@ const roleGroups = [
       '2026 November SAT',
       '2026 December SAT',
     ],
+  },
+
+  {
+    title: 'ACT Test Dates (2026)',
+    description: 'When are you taking the ACT?',
+    roles: [
+        '2026 February ACT',
+        '2026 April ACT',
+        '2026 June ACT',
+        '2026 July ACT',
+        '2026 September ACT',
+        '2026 October ACT',
+        '2026 December ACT',
+    ]
   },
 
   {
@@ -85,6 +99,7 @@ const roleGroups = [
       'Class of 2025',
     ],
   },
+
 ];
 
 
