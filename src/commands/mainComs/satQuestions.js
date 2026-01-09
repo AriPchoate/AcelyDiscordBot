@@ -1,0 +1,77 @@
+const {
+ 	Client,
+ 	Interaction,
+  	MessageFlags,
+  	ApplicationCommandOptionType,
+	ActionRowBuilder,
+  	ButtonBuilder,
+ 	ButtonStyle,
+} = require('discord.js');
+
+const satPracticeQuestions = require('../../files/satPracticeQuestions');
+
+
+totalNumQuestion = 10
+
+module.exports = {
+  	name: 'satquestion',
+  	description: 'Gives you a SAT practice question',
+
+    callback: async (client, interaction) => {
+        // await interaction.deferReply({flags: MessageFlags.Ephemeral});
+        await interaction.deferReply();
+
+		const allowedChannelId = '1458883425120550985';
+
+		if (interaction.channelId !== allowedChannelId) {
+            return interaction.editReply(`This command can only be used in <#${allowedChannelId}>!`);
+        }
+
+
+        const qNum = Math.floor((Math.random()*128));
+
+		const questionData = satPracticeQuestions(qNum);
+
+		const qText = `Question: ${questionData.question}
+	A) ${questionData.choice1}
+	B) ${questionData.choice2}
+	C) ${questionData.choice3}
+	D) ${questionData.choice4}
+		`
+
+		const buttons = new ActionRowBuilder().addComponents(
+			new ButtonBuilder().setCustomId('A').setLabel('A').setStyle(ButtonStyle.Primary),
+			new ButtonBuilder().setCustomId('B').setLabel('B').setStyle(ButtonStyle.Primary),
+			new ButtonBuilder().setCustomId('C').setLabel('C').setStyle(ButtonStyle.Primary),
+			new ButtonBuilder().setCustomId('D').setLabel('D').setStyle(ButtonStyle.Primary)
+    	);
+		
+		// 2. Send the question with buttons
+		const response = await interaction.editReply({
+			content: qText,
+			components: [buttons]
+		});
+
+		// 3. Create a Collector to listen for the click
+		const collector = response.createMessageComponentCollector({
+				filter: (i) => i.user.id === interaction.user.id,
+			});
+
+		// 2. Listen for the 'collect' event (the click)
+		collector.on('collect', async (confirmation) => {
+			const isCorrect = confirmation.customId === questionData.answer;
+			
+			const resultMessage = isCorrect 
+				? `${qText}\n\n Great job! The answer was ${questionData.answer}.`
+				: `${qText}\n Unforunately, the correct answer was ${questionData.answer}, but you chose ${confirmation.customId}. \n Explanation: ${questionData.explanation}`;
+
+			await confirmation.update({ 
+				content: resultMessage, 
+				components: [] // Remove buttons so they can't answer again
+			});
+
+			// Stop the collector since the question is finished
+			collector.stop();
+		});
+    },
+};

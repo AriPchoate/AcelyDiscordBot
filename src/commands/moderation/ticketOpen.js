@@ -2,8 +2,6 @@ const {
   ApplicationCommandOptionType,
   MessageFlags,
 } = require('discord.js');
-const Level = require('../../models/Level');
-const LevelCalc = require('../../utils/calculateLevel');
 const { assignRoles } = require('../../utils/roles');
 
 // const SetLevel = require('../../utils/setLevel');
@@ -38,7 +36,7 @@ module.exports = {
     const staffRoles = guild.roles.cache.filter(role => role.position >= minRole.position);
 
     const ticketCategory = guild.channels.cache.find(
-        c => c.name.toLowerCase() === "new tickets" && c.type === 4
+        c => c.name.toLowerCase() === "open tickets" && c.type === 4
     );
 
 
@@ -71,7 +69,7 @@ module.exports = {
 
     await ticketChannel.send({
         content:
-`📩 **New Ticket Created**
+`**New Ticket Created**
 **User:** ${member.user}
 **Issue:** ${issue}
 
