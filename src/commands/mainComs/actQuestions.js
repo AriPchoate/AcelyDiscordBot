@@ -60,10 +60,12 @@ module.exports = {
         // 2. Listen for the 'collect' event (the click)
         collector.on('collect', async (confirmation) => {
             const isCorrect = confirmation.customId === questionData.answer;
+            const explanation = questionData.explanation?.trim();
             
             const resultMessage = isCorrect 
                 ? `${qText}\n\n Great job! The answer was ${questionData.answer}.`
-                : `${qText}\n Unforunately, the correct answer was ${questionData.answer}, but you chose ${confirmation.customId}. \n Explanation: ${questionData.explanation}`;
+                : `${qText}\n\n Unfortunately, the correct answer was **${questionData.answer}**, but you chose **${confirmation.customId}**.${explanation ? `\n\n**Explanation:** ${explanation}` : ''}`;
+
 
             await confirmation.update({ 
                 content: resultMessage, 

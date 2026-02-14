@@ -1,0 +1,92 @@
+[
+  {
+    "question": "The density of a certain metallic alloy is 2,710 kilograms per cubic meter. A block of this alloy is in the shape of a rectangular prism with dimensions 0.5 meters by 0.4 meters by 0.2 meters. To the nearest whole number, what is the mass, in kilograms, of this block?",
+    "choice1": "107",
+    "choice2": "542",
+    "choice3": "1084",
+    "choice4": "2981",
+    "answer": "A",
+    "explanation": ""
+  },
+  {
+    "question": "The graphs of the equations in the given system of equations intersect at the point (x,y) in the xy-plane: 12x+y=35, 3x^2=y+100. What is a possible value of x.",
+    "choice1": "-9",
+    "choice2": "-5",
+    "choice3": "9",
+    "choice4": "12",
+    "answer": "A",
+    "explanation": ""
+  },
+  {
+    "question": "In the xy-plane, a line with equation -5y=3.75, intersects a parabola at exactly one point. If the parabola has equation y=3x^2 - bx, where b is a negative constant, what is the value of b",
+    "choice1": "-6",
+    "choice2": "-11",
+    "choice3": "-1",
+    "choice4": "-3",
+    "answer": "D",
+    "explanation": ""
+  },
+  {
+    "question": "The force exerted by a fluid on a flat surface is the product of the fluid's pressure and the area of the surface. A certain flat surface consists of two adjacent squares, where the side length, in meters, of the larger square is 4 times the side length, in meters, of the smaller square. A fluid exerts a uniform pressure of 12.00 newtons per square meter on this surface. If the total force exerted by the fluid on this surface is 816 newtons, what is the force, in newtons, exerted by the fluid on the larger square?",
+    "choice1": "952",
+    "choice2": "256",
+    "choice3": "768",
+    "choice4": "1018",
+    "answer": "C",
+    "explanation": ""
+  },
+  {
+    "question": "What value of w satisfies the equation 4w^2+150=250 rounded to the nearest whole number?",
+    "choice1": "1",
+    "choice2": "5",
+    "choice3": "7",
+    "choice4": "10",
+    "answer": "B",
+    "explanation": ""
+  },
+  {
+    "question": "In triangle XYZ, the measure of angle X is 20°. If triangle XYZ is isosceles, which of the following is NOT a possible measure of angle Y?",
+    "choice1": "20",
+    "choice2": "80",
+    "choice3": "120",
+    "choice4": "140",
+    "answer": "C",
+    "explanation": ""
+  },
+  {
+    "question": "To estimate the mean number of hours that students at a high school spend on homework per week, Marco surveyed 50 students in the school library after school. For the 50 students surveyed, the mean number of hours spent on homework was 8. Which of the following statements must be true?",
+    "choice1": "The mean number of hours spent on homework per week for all students at the high school is 8.",
+    "choice2": "A determination about the mean number of hours spent on homework per week for all students at the high school should not be made because the sample size is too small.",
+    "choice3": "The sampling method is not flawed and is likely to produce an unbiased estimate of the mean number of hours spent on homework per week for all students at the high school.",
+    "choice4": "The sampling method is flawed and may produce a biased estimate of the mean number of hours spent on homework per week for all students at the high school.",
+    "answer": "D",
+    "explanation": ""
+  },
+  {
+    "question": "A home baker sells cakes. The profit, P, in dollars, from selling n cakes is given by the equation P=14n-250. Which of the following is the best interpretation of the number 14 in this context?",
+    "choice1": "The baker's total profit if one cake is sold.",
+    "choice2": "The price of a single cake.",
+    "choice3": "The increase in profit for each additional cake sold.",
+    "choice4": "The initial cost to start the baking business.",
+    "answer": "C",
+    "explanation": ""
+  },
+  {
+    "question": "The density of a particular type of granite is 168 pounds per cubic foot. What is the density of this granite, in ounces per cubic foot? (1 pound = 16 ounces)",
+    "choice1": "2688",
+    "choice2": "3424",
+    "choice3": "7056",
+    "choice4": "28244",
+    "answer": "A",
+    "explanation": ""
+  },
+  {
+    "question": "A theater sold tickets for matinee and evening performances. The number of evening tickets sold was 20 fewer than twice the number of matinee tickets sold. In total, 250 tickets were sold for both types of performances. How many matinee tickets were sold?",
+    "choice1": "25",
+    "choice2": "70",
+    "choice3": "85",
+    "choice4": "90",
+    "answer": "D",
+    "explanation": ""
+  }
+]

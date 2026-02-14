@@ -4,7 +4,7 @@ module.exports = {
     // devOnly: Boolena,
     // testOnly: Boolean,
     // options: Object[],
-    // deleted : Boolean
+    // deleted : Boolean,
 
     callback: async(client, interaction) => {
         // interaction.reply(`Pong! ${client.ws.ping}ms`);

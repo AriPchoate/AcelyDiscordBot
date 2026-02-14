@@ -1,40 +1,19 @@
-const questions = [
-    {
-        question: "testing1",
-        choice1: "answer choice 1",
-        choice2: "answer choice 2",
-        choice3: "answer choice 3",
-        choice4: "answer choice 4",
-        answer: "A",
-        explanation: "spaceholder",
-    },
-    {
-        question: "testing2",
-        choice1: "answer choice 1",
-        choice2: "answer choice 2",
-        choice3: "answer choice 3",
-        choice4: "answer choice 4",
-        answer: "B",
-        explanation: "spaceholder",
-    },
-    {
-        question: "testing3",
-        choice1: "answer choice 1",
-        choice2: "answer choice 2",
-        choice3: "answer choice 3",
-        choice4: "answer choice 4",
-        answer: "C",
-        explanation: "spaceholder",
-    },
-];
+const fs = require('fs');
+const path = require('path');
 
 module.exports = (num) => {
+    // Point to the JSON file in the same folder
+    const filePath = path.join(__dirname, '..', '..', '.data', 'ACTquestions.json');
+    
+    if (!fs.existsSync(filePath)) return null;
 
-    const length = questions.length;
+    // Read the file from disk
+    const data = fs.readFileSync(filePath, 'utf-8');
+    const questionsList = JSON.parse(data);
 
-    const qNum = num % length;
+    if (questionsList.length === 0) return null;
 
-    const questionOutput = questions[qNum];
-
-    return questionOutput;
+    // Use modulo to pick a valid index
+    const index = num % questionsList.length;
+    return questionsList[index];
 };

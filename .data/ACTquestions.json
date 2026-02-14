@@ -1,0 +1,83 @@
+[
+  {
+    "question": "How far apart are the points (3,2) and (7,8) in the standard (x,y) coordinate plane?",
+    "choice1": "4",
+    "choice2": "sqrt(20)",
+    "choice3": "sqrt(42)",
+    "choice4": "sqrt(52)",
+    "answer": "D",
+    "explanation": ""
+  },
+  {
+    "question": "A landscaping company charges residential customers $3.50 per 1,000 square feet of lawn mowed and $19.00 per month for garden maintenance. Which of the following expressions gives a residential customer's total monthly charges, in dollars, for mowing s thousand square feet of lawn and garden maintenance?",
+    "choice1": "3.50s + 1019.00",
+    "choice2": "3.50s - 19.00",
+    "choice3": "22.50s",
+    "choice4": "3.50s + 19.00",
+    "answer": "D",
+    "explanation": ""
+  },
+  {
+    "question": "The length of a plastic strip L(x), in meters, is represented by the equation L(X)= x^2 + 6x + 3. A machine transforms the plastic strip by cutting it into smaller pieces such that the length decreases by 2 meters, and the position of measurement is shifted 1 meter to the right along the plastic. If the new length K(x) represents the length of the strip after this transformation, what is K(x)?",
+    "choice1": "2x^2 + 4x - 2",
+    "choice2": "x^2 + 4x - 8",
+    "choice3": "x^2 + 4x - 4",
+    "choice4": "3x^2 + 4x - 2",
+    "answer": "C",
+    "explanation": ""
+  },
+  {
+    "question": "The sum of 2 numbers is 30. The sum of the squares of the 2 numbers is 500. What is the product of the 2 numbers?",
+    "choice1": "200",
+    "choice2": "225",
+    "choice3": "240",
+    "choice4": "275",
+    "answer": "A",
+    "explanation": ""
+  },
+  {
+    "question": "John has $130 available to purchase USBs for his tech store. Each USB costs $10, and John will pay a sales tax of 8% on the total price of the USBs. What is the maximum number of USBs John can buy?",
+    "choice1": "10",
+    "choice2": "11",
+    "choice3": "12",
+    "choice4": "13",
+    "answer": "C",
+    "explanation": ""
+  },
+  {
+    "question": "Given functions f(x)= 2x - 1 and g(x)= x^2 + 2, what is the value of f(g(3))?",
+    "choice1": "-27",
+    "choice2": "-20",
+    "choice3": "21",
+    "choice4": "25",
+    "answer": "C",
+    "explanation": ""
+  },
+  {
+    "question": "In a local community garden, there are 126 plants, with the ratio of flowering plants to non-flowering plants being 5:13. How many non-flowering plants must be planted to change the ratio of flowering plants to non-flowering plants to 1:3?",
+    "choice1": "5",
+    "choice2": "7",
+    "choice3": "13",
+    "choice4": "14",
+    "answer": "D",
+    "explanation": ""
+  },
+  {
+    "question": "Jenna has 7 1/9 pounds of flour she will use to bake cakes. She will use 3/4 pound of flour to make each cake. After Jenna has baked all the cakes possible with the flour, what amount of flour, in pounds, will not have been used to bake cakes?",
+    "choice1": "4/9",
+    "choice2": "7/18",
+    "choice3": "6/25",
+    "choice4": "13/27",
+    "answer": "D",
+    "explanation": ""
+  },
+  {
+    "question": "A satellite is positioned 50 miles above Earth's surface and is directly 30 miles east and 40 miles north of a tracking station. What is the closest approximation of the straight-line distance from the tracking station to the satellite?",
+    "choice1": "60.71 miles",
+    "choice2": "70.71 miles",
+    "choice3": "75.71 miles",
+    "choice4": "80.71 miles",
+    "answer": "B",
+    "explanation": ""
+  }
+]
