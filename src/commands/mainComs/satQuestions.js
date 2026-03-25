@@ -9,7 +9,7 @@ const {
 } = require('discord.js');
 
 const questions = require('../../files/satPracticeQuestions.js');
-
+const giveReward = require('../../utils/giveReward');
 
 totalNumQuestion = 10
 
@@ -62,10 +62,21 @@ module.exports = {
             const isCorrect = confirmation.customId === questionData.answer;
             const explanation = questionData.explanation?.trim();
             
-            const resultMessage = isCorrect 
-                ? `${qText}\n\n Great job! The answer was ${questionData.answer}.`
-                : `${qText}\n\n Unfortunately, the correct answer was **${questionData.answer}**, but you chose **${confirmation.customId}**.${explanation ? `\n\n**Explanation:** ${explanation}` : ''}`;
-			
+			const resultMessage = isCorrect 
+				? `${qText}\n\n Great job! The answer was ||${questionData.answer}.||`
+				: `${qText}\n\n Unfortunately, the correct answer was ||**${questionData.answer}**, but you chose **${confirmation.customId}**.${explanation ? `\n\n**Explanation:** ${explanation}` : ''} ||`;
+
+			if (isCorrect) {
+				const user = interaction.member.id;
+				const guild = interaction.guild.id;
+				const query = {
+					userId: user,
+					guildId: guild,
+				};
+				giveReward(query, 5);
+				console.log(`Gave 5 xp to user for correct answer`);
+			}
+
 			await confirmation.update({ 
 				content: resultMessage, 
 				components: [] // Remove buttons so they can't answer again

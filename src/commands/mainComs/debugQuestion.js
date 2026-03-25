@@ -1,11 +1,11 @@
 const {
- 	Client,
- 	Interaction,
-  	MessageFlags,
-  	ApplicationCommandOptionType,
-	ActionRowBuilder,
-  	ButtonBuilder,
- 	ButtonStyle,
+    Client,
+    Interaction,
+    MessageFlags,
+    ApplicationCommandOptionType,
+    ActionRowBuilder,
+    ButtonBuilder,
+    ButtonStyle,
 } = require('discord.js');
 
 const actPracticeQuestions = require('../../files/actPracticeQuestions');
@@ -15,14 +15,14 @@ const giveReward = require('../../utils/giveReward');
 totalNumQuestion = 10
 
 module.exports = {
-    name: 'actquestion',
-    description: 'Gives you an ACT practice question',
+    name: 'debugquestion',
+    description: 'Debug question',
 
     callback: async (client, interaction) => {
         // await interaction.deferReply({flags: MessageFlags.Ephemeral});
         await interaction.deferReply();
 
-        const allowedChannelId = '1458884116211826782';
+        const allowedChannelId = '1412618434285535242';
 
         if (interaction.channelId !== allowedChannelId) {
             return interaction.editReply(`This command can only be used in <#${allowedChannelId}>!`);
@@ -77,6 +77,7 @@ module.exports = {
                 giveReward(query, 5);
                 console.log(`Gave 5 xp to user for correct answer`);
             }
+
 
             await confirmation.update({ 
                 content: resultMessage, 

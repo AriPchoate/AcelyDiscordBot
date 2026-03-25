@@ -122,7 +122,7 @@ if (interaction.isButton()) {
     const member = interaction.member;
 
     try {
-      // 🔁 TOGGLE LOGIC
+      // TOGGLE LOGIC
       if (member.roles.cache.has(role.id)) {
         await member.roles.remove(role);
         return interaction.reply({
