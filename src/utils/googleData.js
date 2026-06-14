@@ -51,8 +51,81 @@ module.exports = async () => {
 
         }
 
-            
-        // console.log(`Successfully synced SAT and ACT questions`);
+        // Announcements Section
+    {
+        const sheet = doc.sheetsByTitle["Announcements"];
+        const rows = await sheet.getRows();
+
+        // if (rows.length > 0) {
+        //     console.log("Available headers in Sheets:", rows[0]._rawData);
+        // }
+
+        // const questionsArray = rows.map(row => {
+        //     return {
+        //         live: row.get('Announcement Live (Y/N)'),
+        //         title: row.get('Title'),
+        //         descrip: row.get('Description (Should be in Markdown)'),
+        //         pollChoice: row.get('Optional Poll (Y/N)') || "",
+        //         pollTitle: row.get('Poll Title (Optional)') || "",
+        //         choice1: row.get('Choice 1 (Optional)') || "",
+        //         choice2: row.get('Choice 2 (Optional)') || "",
+        //         choice3: row.get('Choice 3 (Optional)') || "",
+        //         choice4: row.get('Choice 4 (Optional)') || "",
+        //         choice5: row.get('Choice 5 (Optional)') || "",
+        //         choice6: row.get('Choice 6 (Optional)') || "",
+        //     };
+        // });
+        
+        const questionsArray = rows.map(row => {
+            return {
+                live: row.get('Announcement Live (Y/N)'),
+                title: row.get('Title'),
+                descrip: row.get('Description (Should be in Markdown)'),
+                pollChoice: row.get('Optional Poll (Y/N)'),
+                pollTitle: row.get('Poll Title (Optional)'),
+                choice1: row.get('Choice 1 (Optional)'),
+                choice2: row.get('Choice 2 (Optional)'),
+                choice3: row.get('Choice 3 (Optional)'),
+                choice4: row.get('Choice 4 (Optional)'),
+                choice5: row.get('Choice 5 (Optional)'),
+            };
+        });
+
+        const fileName = "announcements.json"
+
+        const filePath = path.join(__dirname, '..', '..', '.data', fileName);
+
+        // Save the array to a file so the bot can use it without calling Google again
+        fs.writeFileSync(filePath, JSON.stringify(questionsArray, null, 2), 'utf-8');
+
+        // console.log("Questions and announcements updated.");
+
+    }
+
+
+
+        const sheet = doc.sheetsByTitle["Announcements"];
+        const rows = await sheet.getRows();
+
+        const questionsArray = rows.map(row => {
+            return {
+                test: row.get('SAT or ACT or Both'),
+                daysBefore: row.get('How many days before the test date?'),
+                descrip: row.get('Announcement (in Markdown)'),
+            };
+        });
+
+        const fileName = "autoMessages.json"
+
+        const filePath = path.join(__dirname, '..', '..', '.data', fileName);
+
+        // Save the array to a file so the bot can use it without calling Google again
+        fs.writeFileSync(filePath, JSON.stringify(questionsArray, null, 2), 'utf-8');
+
+        console.log("Questions, announcements, and messages updated.");
+
+
+
         return;
 
     } catch (err) {
