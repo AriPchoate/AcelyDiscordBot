@@ -1,8 +1,13 @@
 const { devs, testServer } = require('../../../config.json');
 const getLocalCommands = require('../../utils/getLocalCommands');
 const {
-  MessageFlags
+  MessageFlags,
+  EmbedBuilder,
 } = require('discord.js');
+
+const fs = require('fs');
+const path = require('path');
+const pollData = require('../../files/pollData.js');
 
 module.exports = async (client, interaction) => {
   // if (!interaction.isChatInputCommand()) return;
@@ -108,6 +113,7 @@ module.exports = async (client, interaction) => {
 
 
 if (interaction.isButton()) {
+  
   if (interaction.customId.startsWith('assignRole_')) {
     const roleId = interaction.customId.split('_')[1];
     const role = interaction.guild.roles.cache.get(roleId);
@@ -144,12 +150,94 @@ if (interaction.isButton()) {
       });
     }
   }
+
+  if (interaction.customId.startsWith('choice_')) {
+    // await interaction.deferReply({ flags: MessageFlags.Ephemeral});
+    
+    const pollNumChoice = interaction.customId.split('_')[1];
+
+    const messageId = interaction.message.id;
+
+    const polls = pollData();
+
+    const keys = Object.keys(polls);
+
+    let correctMessageId;
+    let choiceName;
+    let alreadyVoted = false;
+
+    if (keys.length === 0) {
+        console.log("The object is empty. No keys to loop through.");
+    } else {
+        keys.forEach(key => {
+            const p = polls[key];
+            // console.log(p)
+            // console.log(`Comparing: ${key} === ${messageId}`);
+            
+            if (key === messageId) {
+                correctMessageId = messageId;
+
+                if (polls[key]['voters'].includes(interaction.user.id) ){
+                    alreadyVoted = true;
+                }
+
+                const pollVotes = polls[key]['votes'];
+                const pollKeys = Object.keys(pollVotes);
+
+                choiceName = pollKeys[pollNumChoice];
+                // console.log(choiceName);
+            }
+            
+        });
+    }
+
+    if (alreadyVoted) {
+        return interaction.reply({
+            content: 'Your response has already been recorded',
+            flags: MessageFlags.Ephemeral,
+          });
+    }
+
+    
+    
+    const filePath = path.join(__dirname, '..', '..', '..', '.data', 'pollResults.json');
+    // // // 1. Read and Parse
+    const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+
+    data[correctMessageId]['votes'][choiceName]++;
+    data[correctMessageId]['voters'].push(interaction.user.id);
+
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+
+    const results = data[correctMessageId]['votes'];
+
+
+    const resultsList = Object.entries(results)
+        .map(([choice, votes]) => `**${choice}**: ${votes} votes`)
+        .join('\n\n');
+
+    const channel = client.channels.cache.get('1486880448637309029');
+    const message = await channel.messages.fetch(data[correctMessageId]['logMessageId']);
+
+    const updatedEmbed = new EmbedBuilder()
+        .setTitle(`Poll Results from \"${data[correctMessageId]['title']}\"`)
+        .setDescription(resultsList || "No votes yet.")
+        .setColor(0x2ecc71)
+        .setFooter( {text: `Last voter: ${interaction.user.tag}`, iconURL: interaction.user.displayAvatarURL() } )
+        .setTimestamp(new Date());
+
+    await message.edit({ embeds: [updatedEmbed] });
+
+    return interaction.reply({
+        content: 'Your response has been recorded',
+        flags: MessageFlags.Ephemeral,
+    });
+
+    
+    
+  }
+
 }
-
-
-
-
-
 
 
 
