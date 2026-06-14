@@ -1,0 +1,24 @@
+[
+  {
+    "live": "Y",
+    "title": "Testing Announcement",
+    "descrip": "awefawefawefawefawef awefawefawef awef"
+  },
+  {
+    "live": "N",
+    "title": "Shouldn't be shown",
+    "descrip": "jghjlkfghlkfgnf"
+  },
+  {
+    "live": "Y",
+    "title": "Second Test",
+    "descrip": "second test description",
+    "pollChoice": "Y",
+    "pollTitle": "Test score",
+    "choice1": ">1000",
+    "choice2": ">1200",
+    "choice3": ">1300",
+    "choice4": ">1400",
+    "choice5": ">1500"
+  }
+]
