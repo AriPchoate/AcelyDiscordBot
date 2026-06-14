@@ -17,6 +17,7 @@ totalNumQuestion = 10
 module.exports = {
     name: 'debugquestion',
     description: 'Debug question',
+    deleted: true,
 
     callback: async (client, interaction) => {
         // await interaction.deferReply({flags: MessageFlags.Ephemeral});
